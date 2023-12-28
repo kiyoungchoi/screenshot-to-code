@@ -1,19 +1,28 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App.tsx";
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
 import "./index.css";
-import { Toaster } from "react-hot-toast";
-import EvalsPage from "./components/evals/EvalsPage.tsx";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import App from './App';
+import EvalsPage from './components/evals/EvalsPage.tsx'; // should fix dir to views
+import { Toaster } from 'react-hot-toast';
 
-ReactDOM.createRoot(document.getElementById("root")!).render(
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+    children: [
+      {
+        path: 'evals',
+        element: <EvalsPage />
+      }
+    ]
+  }
+]);
+
+ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <Router>
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/evals" element={<EvalsPage />} />
-      </Routes>
-    </Router>
-    <Toaster toastOptions={{ className: "dark:bg-zinc-950 dark:text-white" }} />
+    <RouterProvider router={router} />
+    <Toaster />
   </React.StrictMode>
 );
+

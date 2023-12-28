@@ -12,5 +12,8 @@ backend/backend/*
 frontend/.env.local
 .env
 
+# libraires
+frontend/node_modules
+
 # Mac files
 .DS_Store
